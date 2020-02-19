@@ -1,0 +1,20 @@
+version: "3"
+services: 
+   webmshare:
+      build: ./build/
+      image: webmshare
+      container_name: webmshare
+      volumes:
+        - "./srv/:/var/www/webmshare/"
+        - "./uploads/:/uploads/"
+      environment:
+         VIRTUAL_HOST: domains.go.here
+         VIRTUAL_PORT: 80
+         LETSENCRYPT_HOST: domains.go.here
+         LETSENCRYPT_EMAIL: email@addre.ss
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+

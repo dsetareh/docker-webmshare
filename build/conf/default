@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    root /var/www/webmshare/;
+    index index.php;
+
+    server_name localhost;
+    location / {
+    try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    }
+
+    rewrite ^/v([^/]+)(?:[/])a([^/]+)?$ /videos.php?video=/uploads/$1.webm&audio=/uploads/$2.mp3;
+    rewrite ^/v(.*)$ /videos.php?video=/uploads/$1.webm;
+}
+
