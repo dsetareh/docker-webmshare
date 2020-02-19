@@ -36,8 +36,8 @@ RUN         apt-get update && apt-get install -y supervisor && mkdir -p /var/log
 		&& ln -sf /dev/stderr /var/log/nginx/error.log
 
 
-COPY        ./conf/supervisord.conf /etc/supervisor/conf.d/
-COPY        ./conf/default /etc/nginx/sites-available/
+COPY        conf/supervisord.conf /etc/supervisor/conf.d/
+COPY        conf/default /etc/nginx/sites-available/
 
 WORKDIR     /var/www/webmshare/
 
